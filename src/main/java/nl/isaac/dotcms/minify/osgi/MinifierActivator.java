@@ -1,6 +1,7 @@
 package nl.isaac.dotcms.minify.osgi;
 
-import com.dotcms.repackage.org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleContext;
+
 import com.dotmarketing.filters.CMSFilter;
 
 import nl.isaac.dotcms.minify.FileChangedPostHook;
@@ -15,6 +16,7 @@ import nl.isaac.dotcms.util.osgi.ViewToolScope;
 
 public class MinifierActivator extends ExtendedGenericBundleActivator {
 
+	@Override
 	public void start(BundleContext context) throws Exception {
 
 		initializeServices(context);
@@ -42,6 +44,7 @@ public class MinifierActivator extends ExtendedGenericBundleActivator {
 
 
 
+	@Override
 	public void stop(BundleContext context) throws Exception {
 
 		// Clear the cache
