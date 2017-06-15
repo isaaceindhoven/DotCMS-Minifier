@@ -8,7 +8,8 @@ import java.net.URI;
 
 import javax.servlet.http.HttpServlet;
 
-import com.dotcms.repackage.org.apache.commons.io.IOUtils;
+import org.apache.commons.io.IOUtils;
+
 import com.dotmarketing.beans.Host;
 import com.dotmarketing.exception.DotDataException;
 import com.dotmarketing.portlets.fileassets.business.FileAsset;

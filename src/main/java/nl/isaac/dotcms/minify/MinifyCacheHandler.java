@@ -19,13 +19,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
 
-import nl.isaac.dotcms.minify.compressor.CssCompressor;
-import nl.isaac.dotcms.minify.exception.DotCMSFileNotFoundException;
-import nl.isaac.dotcms.minify.shared.FileTools;
-import nl.isaac.dotcms.minify.shared.HostTools;
-import nl.isaac.dotcms.minify.util.ParamValidationUtil;
+import org.apache.commons.io.IOUtils;
 
-import com.dotcms.repackage.org.apache.commons.io.IOUtils;
 import com.dotmarketing.beans.Host;
 import com.dotmarketing.business.CacheLocator;
 import com.dotmarketing.business.DotCacheAdministrator;
@@ -38,6 +33,12 @@ import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.Compiler;
 import com.google.javascript.jscomp.CompilerOptions;
 import com.google.javascript.jscomp.SourceFile;
+
+import nl.isaac.dotcms.minify.compressor.CssCompressor;
+import nl.isaac.dotcms.minify.exception.DotCMSFileNotFoundException;
+import nl.isaac.dotcms.minify.shared.FileTools;
+import nl.isaac.dotcms.minify.shared.HostTools;
+import nl.isaac.dotcms.minify.util.ParamValidationUtil;
 
 /**
  * The Singleton that handles the cache of the minified files.
@@ -156,9 +157,9 @@ public enum MinifyCacheHandler {
 				CompilerOptions options = new CompilerOptions();
 				CompilationLevel.WHITESPACE_ONLY.setOptionsForCompilationLevel(options);
 
-				List<SourceFile> jsFiles = new LinkedList<SourceFile>();
+				List<SourceFile> jsFiles = new LinkedList<>();
 				jsFiles.add(SourceFile.fromInputStream(file.getFileName(), input, StandardCharsets.UTF_8));
-				List<SourceFile> externalJsfiles = new LinkedList<SourceFile>();
+				List<SourceFile> externalJsfiles = new LinkedList<>();
 				compiler.compile(externalJsfiles, jsFiles, options);
 				result = compiler.toSource();
 
